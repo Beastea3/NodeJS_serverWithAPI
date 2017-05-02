@@ -1,0 +1,24 @@
+var User = require('../lib/user');
+exports.from = function(req, res) {
+	res.render('register',{title: 'Register'});
+};
+exports.submit = functoin(req, res, next) {
+	var data = req.body.user;
+	User.getBuName(data.name, function(err, user) {
+		if  (err) return next(err);
+		if (user.id) {
+			res.error("'Username is Already taken!");
+			res.redirect('back');
+		}else{
+			user = new User({
+				name: data.name,
+				pass: data.pass
+			});
+			user.save(function(err){
+				if (err) return next(err);
+				req.session.uid = user.id;
+				res.redirect('/');
+			});
+		}
+	});
+};

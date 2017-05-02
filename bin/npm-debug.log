@@ -1,0 +1,69 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'install', 'methodOverride' ]
+2 info using npm@1.4.21
+3 info using node@v0.10.25
+4 verbose readDependencies using package.json deps
+5 verbose cache add [ 'methodOverride', null ]
+6 verbose cache add name=undefined spec="methodOverride" args=["methodOverride",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'methodOverride',
+7 verbose parsed url   path: 'methodOverride',
+7 verbose parsed url   href: 'methodOverride' }
+8 silly lockFile 106534e5-methodOverride methodOverride
+9 verbose lock methodOverride /home/yue/.npm/106534e5-methodOverride.lock
+10 silly lockFile 106534e5-methodOverride methodOverride
+11 silly lockFile 106534e5-methodOverride methodOverride
+12 verbose addNamed [ 'methodOverride', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile 70c5ec60-methodOverride methodOverride@
+15 verbose lock methodOverride@ /home/yue/.npm/70c5ec60-methodOverride.lock
+16 silly addNameRange { name: 'methodOverride', range: '*', hasData: false }
+17 verbose request where is /methodOverride
+18 verbose request registry https://registry.npmjs.org/
+19 verbose request id a0c90fc8d91a9d35
+20 verbose url raw /methodOverride
+21 verbose url resolving [ 'https://registry.npmjs.org/', './methodOverride' ]
+22 verbose url resolved https://registry.npmjs.org/methodOverride
+23 verbose request where is https://registry.npmjs.org/methodOverride
+24 info trying registry request attempt 1 at 01:45:00
+25 http GET https://registry.npmjs.org/methodOverride
+26 http 404 https://registry.npmjs.org/methodOverride
+27 silly registry.get cb [ 404,
+27 silly registry.get   { 'content-type': 'application/json',
+27 silly registry.get     'cache-control': 'max-age=0',
+27 silly registry.get     'content-length': '2',
+27 silly registry.get     'accept-ranges': 'bytes',
+27 silly registry.get     date: 'Thu, 27 Oct 2016 17:45:00 GMT',
+27 silly registry.get     via: '1.1 varnish',
+27 silly registry.get     age: '0',
+27 silly registry.get     connection: 'keep-alive',
+27 silly registry.get     'x-served-by': 'cache-ord1740-ORD',
+27 silly registry.get     'x-cache': 'MISS',
+27 silly registry.get     'x-cache-hits': '0',
+27 silly registry.get     'x-timer': 'S1477590300.818774,VS0,VE47',
+27 silly registry.get     vary: 'Accept-Encoding' } ]
+28 silly lockFile 70c5ec60-methodOverride methodOverride@
+29 silly lockFile 70c5ec60-methodOverride methodOverride@
+30 error 404 Not Found
+30 error 404
+30 error 404 'methodOverride' is not in the npm registry.
+30 error 404 You should bug the author to publish it
+30 error 404 It was specified as a dependency of 'application-name'
+30 error 404
+30 error 404 Note that you can also install from a
+30 error 404 tarball, folder, or http url, or git url.
+31 error System Linux 3.19.0-69-generic
+32 error command "/usr/bin/nodejs" "/usr/bin/npm" "install" "methodOverride"
+33 error cwd /home/yue/myapp/microblog/bin
+34 error node -v v0.10.25
+35 error npm -v 1.4.21
+36 error code E404
+37 verbose exit [ 1, true ]

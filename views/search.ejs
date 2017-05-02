@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <title><%= title %></title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+
+<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script language="javascript" type="text/javascript">
+  var chart;
+  $(document).ready(function() {
+
+
+    Highcharts.chart('container', {
+    data: {
+        csv: document.getElementById('data').innerHTML
+    },
+    yAxis: {
+        title: {
+            text: 'value'
+        }
+    },
+    plotOptions: {
+	series: {
+	   marker: {
+		enabled:false
+	    }
+	}
+    },
+    title: {
+        text: 'ECG Waveform'
+    },
+    subtitle: {
+        text: 'Track Your Heartbeats!'
+    }
+    
+});
+});
+  </script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <h3>Label: N-1	A-2	V-3	F-4</h3>
+    <div id="container" style="min-width: 1200px; height: 550px; margin: 0 auto"></div>
+    <form id="form1" runat="server">
+  <!--5.导入容器用于显示图表-->
+  </form>
+    <div>
+    <form method= 'GET' action= '/userdata/<%=id %>/search/<%=nPage %>'>
+      <input type="submit" value="Next" />
+      </form>
+          <form method= 'GET' action= '/userdata/<%=id %>/search/<%=pPage %>'>
+          <input type="submit" value="Back" />
+          </form>
+  </div>
+    <div style="overflow-y:scroll;height:400px;width: 500px;white-space:nowrap;">
+
+
+    <table>
+
+ 		<tr>
+    		<th>Time &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
+    		<th>Value&nbsp&nbsp</th>
+    		<th>Value2&nbsp&nbsp&nbsp&nbsp</th>
+    	</tr>
+    	<% for (var i=0; i<results.length; i++) {%>
+    	<tr>
+         	<td>
+            <%= results[i].time%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </td>
+            <td>
+             	<%=results[i].value%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </td>
+            <td>
+             	<%=results[i].value2%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </td>
+  		</tr>
+        <% } %>
+
+</table>
+</div>
+<p hidden id="data">Datetime,Signal,Annotation<br/>
+  <% for (var i=0;i<results.length-1; i++) {%>
+  <%= times[i]%>
+  <% } %>
+</p>
+  </body>
+</html>

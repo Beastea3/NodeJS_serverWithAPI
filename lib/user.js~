@@ -1,0 +1,11 @@
+var redis = require('redis');
+var bcrypt = require('bcrypt');
+var db = reis.createClient();
+
+module.exports = User;
+
+function User(Obj) {
+  for (var key in obj) {
+    this[key] = obj[key];
+ }
+}

@@ -1,0 +1,6 @@
+<% if (local.messages) { %>
+      <% message.forEach(function(message){ %)
+           <p class = '<% =message.type %>'><%= message.string %></p>
+      <% }) %>
+      <% removeMessages() %>
+<% } %>

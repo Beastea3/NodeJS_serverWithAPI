@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <title><%= title %></title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+
+<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+  </head>
+
+<script language="javascript" type="text/javascript">
+  var chart;
+  $(document).ready(function() {
+  	
+    Highcharts.chart('container', {
+        title: {
+            text: 'Value & Time',
+            x: -20 //center
+        },
+        xAxis: {
+            categories: ['<%= results[0].time%>', '<%= results[1].time%>','<%= results[2].time%>','<%= results[3].time%>','<%= results[4].time%>','<%= results[5].time%>','<%= results[6].time%>','<%= results[7].time%>','<%= results[8].time%>','<%= results[9].time%>']
+        },
+        yAxis: {
+            title: {
+                text: 'Temperature (°C)'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: '°C'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'value',
+            data: [<%= results[0].value%>,<%= results[1].value%>,<%= results[2].value%>,<%= results[3].value%>,<%= results[4].value%>，,<%= results[5].value%>，,<%= results[6].value%>，,<%= results[7].value%>，,<%= results[8].value%>,<%= results[9].value%>]
+        }]
+    });
+});
+  </script>
+  <body>
+    <h1><%= title %></h1>
+    <p>Your Data</p>
+    <form id="form1" runat="server">
+  <!--5.导入容器用于显示图表-->
+  <div id="container" style="min-width: 200px; height: 400px; margin: 0 auto"></div>
+  </div>
+  </form>
+    <div style="overflow-y:scroll;height:200px;width: 500px;white-space:nowrap;">
+    <table>
+    
+ 		<tr>
+    		<th>Time</th>
+    		<th>Value</th>
+    		<th>Value2</th>
+    		<th>Option</th>
+    	</tr>
+    	<% for (var i=0; i<results.length; i++) {%>
+    	<tr>
+         	<td>
+            <%= results[i].time%>
+            </td>
+            <td>
+             	<%=results[i].value%>
+            </td>
+            <td>
+             	<%=results[i].value2%>
+            </td>
+            <td>
+         		<form method="POST" action='/userdata/<%=id %>/delete'>
+            	<input type="hidden" name="data[No]" value="<%=results[i].No%>">
+            	<input type="submit" value="Delete" />
+            	</form>
+         	</td>
+  		</tr>
+        <% } %>
+  
+</table>
+</div>
+    <form method= 'POST' action= '/userdata/<%=id %>'>
+      <p>time (YYYY-MM-DD TT:TT:TT):<br/>
+        <input name="data[time]" type="text"><p/>
+      <p> value :<br/>
+        <input name="data[value]" type="text"><p/>
+      <p>value2:<br/>
+        <input name="data[value2]" type="text"><p/>
+      <input type="submit" value="Add" />
+    </form>
+  </body>
+</html>
