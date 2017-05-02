@@ -1,3 +1,4 @@
+//define routing rules of the server
 var api = require('./routes/api');
 var express = require('express');
 var path = require('path');
