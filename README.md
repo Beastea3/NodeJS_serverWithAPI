@@ -10,3 +10,5 @@ views - ejs files to design the web pages
 FOREVER to keep the server running
 
 NGINX as the proxy to the port on which the server is running
+
+nginx.conf is the configuration file of nginx
