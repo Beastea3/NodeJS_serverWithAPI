@@ -7,7 +7,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var register = require('./routes/register');
-//var auth = require('basic-auth');
 var messages = require('./lib/messages');
 var methodOverride = require('method-override');
 var session = require('express-session')
@@ -20,11 +19,9 @@ var userdata = require('./routes/userdata');
 
 
 var app = express();
-
-// view engine setup
+// extensions used in the server app
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-//app.use('/api', api.auth);
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -42,22 +39,20 @@ app.use(session({
 }));
 app.use(user);
 app.use(messages);
+//define the back-end functions by URL demands
 app.get('/login', login.form);
 app.post('/login', login.submit);
 app.post('/api/login',api.login);
 app.get('/logout', login.logout);
 app.get('/datamysql', userdata.show);
-//app.get('/datamysql/archived', userdata.showArchived);
 
 app.get('/', routes);
 app.get('/hello', routes.hello);
 app.use('/users', users);
-//app.use('/data',datamysql);
 app.get('/api/user/:id', api.user);
 app.post('/api/user/:name/temp', api.entriesTemp);
 app.post('/api/user/:name', api.entries);
 app.post('/api/user/:name/search', api.search);
-//app.post('/api/test',api.test);
 app.get('/u/:user', function(req, res) {
     res.send('user: ' + req.params.username);
 });
@@ -70,17 +65,8 @@ app.get('/userdata/:id/add', userdata.addForm);
 app.post('/userdata/:id/add', userdata.add);
 app.post('/register', register.submit);
 app.post('/api/register',api.register);
-//app.post('/userdata/:id', userdata.add);
-//app.post('/datamysql/archive', userdata.archive);
 app.post('/userdata/:id/delete', userdata.delete);
 
-/*
-app.get('/reg',routes.reg);
-app.post('/reg',routes.doReg);
-app.get('/login',routes.login);
-app.post('/login',routes.doLogin);
-app.get('/logout',routes.logout);
-*/
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
