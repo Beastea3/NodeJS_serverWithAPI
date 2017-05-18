@@ -1,9 +1,11 @@
+// functions of API for mobile app
 var express = require('express');
 var User = require('../lib/user');
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var mysqlQuery=require("../lib/mysql.js");
 var mysqlQueryTemp=require("../lib/mysqlTemp");
+//register
 exports.register = function(req, res, next){
   var data = req.body.user;
   User.getByName(data.name, function(err, user){
@@ -26,7 +28,7 @@ exports.register = function(req, res, next){
     }
   });
 };
-
+//login; create a table if not exists for the user when login
 exports.login = function(req, res, next){
   var name = req.body.name;
   var pass = req.body.pass;
@@ -65,7 +67,7 @@ exports.login = function(req, res, next){
     }
   });
 };
-
+// send user data to the mobile app
 exports.user = function(req, res, next){
   User.getByName(req.params.name, function(err, user){
     if (err) return next(err);
@@ -81,14 +83,10 @@ exports.user = function(req, res, next){
       {
             res.json(results);
       }
-    //client.end();
-    //console.log('Server started...');
-    //server.listen(3000, '127.0.0.1');
   });
-   // console.log(value);
     });
   };
-
+// mobile app post data to the server
 exports.entries = function(req, res, next){
   User.getByName(req.params.name, function(err, user){
     if (err) return next(err);
@@ -102,12 +100,12 @@ exports.entries = function(req, res, next){
      function uploadSuc(err, results, fields) {
        if (err) throw err;
   });
-   // console.log(value);
     res.send("Complete");
     };
     });
 
 };
+// Temporary data sent from the app will analyze by a python process and will saved to a temporary database
 exports.entriesTemp = function(req, res, next){
   User.getByName(req.params.name, function(err, user){
     if (err) return next(err);
@@ -144,6 +142,7 @@ exports.entriesTemp = function(req, res, next){
 
     });
 };
+// search data by DATETIME
 exports.search = function(req,res) {
    User.getByName(req.params.name, function(err, user){
     if (err) return next(err);

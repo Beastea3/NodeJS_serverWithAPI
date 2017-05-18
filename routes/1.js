@@ -1,3 +1,4 @@
+// test for the server with a hello page
 var express = require('express');
 var router = express.Router();
 

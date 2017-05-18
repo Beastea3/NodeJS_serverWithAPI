@@ -5,7 +5,8 @@ var mysqlQueryTemp=require("../lib/mysqlTemp");
 var qs = require('querystring');
 var bodyParser = require('body-parser');
 var range = 3600;
-
+// functions for editing and searching the data saved in the server
+// show data saved, 3600 values per page
 exports.show = function(req, res) {
   var id = req.params.id
   var query =
@@ -47,6 +48,7 @@ exports.show = function(req, res) {
     cb(data);
   });
 };*/
+// add data page
 exports.addForm = function(req, res) {
   //exports.parseReceivedData(req, function(HEARTRATE) {
     var id = req.params.id;
@@ -71,6 +73,7 @@ exports.add = function(req, res) {
   //}
   //);
 };
+//delete
 exports.delete = function(req, res) {
   var data = req.body.data;
   var id = req.params.id;
@@ -83,6 +86,7 @@ exports.delete = function(req, res) {
       }
   );
 };
+//search page 1
 exports.searchForm = function(req,res) {
   var id = req.params.id;
   var data = req.body.data;
@@ -111,6 +115,7 @@ exports.searchForm = function(req,res) {
     }
     );
 };
+//search page 2 - n
 exports.search = function(req,res) {
   var id = req.params.id;
   var numOfPage = parseInt(req.params.nPage);
